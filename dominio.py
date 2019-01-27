@@ -99,7 +99,7 @@ def qst_nivel():
     return nmat/nniveis
 
 def inicia_matriz(disciplina):
-    for y in range(4):
+    for y in range(3):
         linha = []
         for x in range(5):
             linha.append(0)
@@ -143,3 +143,45 @@ def get_questao(disciplina, linha, coluna):
 
 def get_especial(item):
     return especial[item]
+
+
+def monta_questao(linha):
+    array = linha.split()
+
+    novo = Questao(linha[0],linha[1],linha[2],linha[3],linha[4],linha[5],linha[6],linha[7],linha[8],linha[8])
+    
+    return novo
+
+def monta_tabela(bd, mbd):
+    k = 0
+    for i in range(3):
+        for j in range(5):
+            novo = monta_questao(bd[k])
+            k = k + 1
+            mdb[i][j] = novo
+
+
+def prepara_bds():
+    inicia_matrizes()
+
+    monta_tabela(bd_matematica, matematica)
+
+    monta_tabela(bd_fisica, fisica)
+
+    monta_tabela(bd_ciencias, ciencias)
+
+
+def prepara_bd_especial():
+    
+    for i in range(nesp):
+        novo = monta_questao(bd_especiais[i])
+        especial.append(novo)
+
+bd_matematica = []
+
+bd_fisica = []
+
+bd_ciencias = []
+
+bd_especiais = []
+

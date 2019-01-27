@@ -87,7 +87,9 @@ def cadastrar():
 
 # modo terminal
 def terminal():
-    #dm.show_listas()
+    dm.prepara_bds()
+    dm.prepara_bd_especial()
+
     while(True):
         print ''
         command = (raw_input('[STI - Pré-ETEC]: ')).strip().split()
