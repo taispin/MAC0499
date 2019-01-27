@@ -1,0 +1,23 @@
+USO:
+
+Para compilar:
+
+	Não é necessário compilar
+
+
+Para executar o sti.py no terminal:
+ 	 
+ 	- python sti.py
+
+_______________________
+
+OBSERVAÇÃO:
+
+	- Eh necessaria instalacao previa da linguagem Python 2.7
+
+
+_______________________
+
+AUTORA:
+
+Taís Pinheiro (7580421)
