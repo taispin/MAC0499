@@ -25,8 +25,28 @@ def help():
     responder - inicia a execução do STI para o aluno"""
 
 
+def going(aluno,command):
 
-# carrega arquivo trace em uma lista de Processos
+    cont = True
+    while cont:
+        step = tt.tutoria(aluno,command)
+        if step == 0:
+            print 'O que fazer em seguida?'
+            print """
+            [1] Continuar
+            [2] Parar
+            """
+            resp = int(raw_input('Informe uma das opções: '))
+            if (resp == 2):
+                cont = False
+                resp = 3  
+        else:
+            cont = False
+            resp = step
+
+    return resp
+
+
 def responder():
 
     cpf = (raw_input('Informe CPF: '))
@@ -36,28 +56,18 @@ def responder():
     #verificar id e senha
     if al.check_login(cpf, senha) == 0:
 
-        # fazer um loop aqui chamando a tutoria e imprimindo o que fazer
-        step = 0
         aluno = al.get_aluno(cpf)
+        cont = 0
         print 'Escolha uma Disciplina:'
         print """
             [1] Questões de Matemática
-            [2] Questões de Física
+            [2] Questões de Humanidades
             [3] Questões de Ciências
             """
         command = (raw_input('Informe uma das opções: '))
 
-        while step == 0:
-            step = tt.tutoria(aluno,command)
-            if step == 0:
-                print 'O que fazer em seguida?'
-                print """
-                [1] Continuar respondendo
-                [2] Parar
-                """
-                prox = (raw_input('Informe uma das opções: '))
-                if prox == 2:
-                    step = 3
+        step = going(aluno,command)
+        
 
         if step == 1:
             print 'Você respondeu uma questão especial.'
@@ -68,6 +78,7 @@ def responder():
             prox = (raw_input('Informe uma das opções: '))
             if prox == 1:
                 tt.feedback(aluno,command)
+
         elif step == 2:
             print 'Questões regulares respondidas.'
             print """
@@ -83,7 +94,11 @@ def responder():
 
 
 def cadastrar():
-    al.cadastra()
+    check = al.cadastra()
+    if check == 1:
+        print 'Informações Inválidas!\n'
+    else:
+        print 'Cadastro efetuado com sucesso!\n'
 
 # modo terminal
 def terminal():
@@ -91,6 +106,11 @@ def terminal():
     dm.prepara_bd_especial()
 
     while(True):
+        print ''
+        print 'Você tem as seguintes opções:'
+        print '[r]: responder questões'
+        print '[c]: cadastrar um novo aluno'
+        print '[s]: sair'
         print ''
         command = (raw_input('[STI - Pré-ETEC]: ')).strip().split()
         print ''

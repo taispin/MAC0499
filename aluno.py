@@ -14,16 +14,17 @@ class Aluno:
         self.age = int(age)
         self.escola = escola
         self.mdone = []
-        self.fdone = []
-        self.qdone = []
+        self.hdone = []
+        self.cdone = []
         self.especiais = []
         self.merros = [0,0,0]
-        self.ferros = [0,0,0]
-        self.qerros = [0,0,0]
+        self.herros = [0,0,0]
+        self.cerros = [0,0,0]
         self.ultimo = []
         self.M = 0
-        self.F = 0
-        self.Q = 0
+        self.H = 0
+        self.C = 0
+        self.E = 0
            
     def get_cpf(self):
         return self.cpf
@@ -52,20 +53,20 @@ class Aluno:
     def get_mdone(self):
         return self.mdone
 
-    def get_fdone(self):
-        return self.fdone
+    def get_hdone(self):
+        return self.hdone
         
-    def get_qdone(self):
-        return self.qdone
+    def get_cdone(self):
+        return self.cdone
 
     def get_merros(self):
         return self.merros
 
-    def get_ferros(self):
-        return self.ferros
+    def get_herros(self):
+        return self.herros
 
-    def get_qerros(self):
-        return self.qerros
+    def get_cerros(self):
+        return self.cerros
 
     def get_especiais(self):
         return self.especiais
@@ -76,29 +77,35 @@ class Aluno:
     def get_M(self):
         return self.M
 
-    def get_F(self):
-        return self.F
+    def get_H(self):
+        return self.H
 
-    def get_Q(self):
-        return self.Q
+    def get_C(self):
+        return self.C
+
+    def get_E(self):
+        return self.E
 
     def set_M(self, valor):
         self.M = valor
 
-    def set_F(self, valor):
-        self.F = valor
+    def set_H(self, valor):
+        self.H = valor
 
-    def set_Q(self, valor):
-        self.Q = valor
+    def set_C(self, valor):
+        self.C = valor
+
+    def set_E(self, valor):
+        self.E = valor
 
     def set_merros(self, pos):
         self.merros[pos] +=1
 
-    def set_ferros(self, pos):
-        self.ferros[pos] +=1
+    def set_herros(self, pos):
+        self.herros[pos] +=1
 
-    def set_qerros(self, pos):
-        self.qerros[pos] +=1
+    def set_cerros(self, pos):
+        self.cerros[pos] +=1
 
     def set_ultimo(self, questao):
         self.ultimo = questao
@@ -106,11 +113,11 @@ class Aluno:
     def update_mdone(self, valor):
         self.mdone.append(valor)
 
-    def update_fdone(self, valor):
-        self.fdone.append(valor)
+    def update_hdone(self, valor):
+        self.hdone.append(valor)
 
-    def update_qdone(self, valor):
-        self.qdone.append(valor)
+    def update_cdone(self, valor):
+        self.cdone.append(valor)
 
     def update_especiais(self, valor):
         self.especiais.append(valor)
@@ -127,36 +134,51 @@ def show_user(user):
     print 'Email:' + str(user.get_email())
     print 'Ano escolar:' + str(user.get_age())
     print 'Escola:' + str(user.get_escola())
-    print 'Niveis:'
-    user.print_niveis()
     print ''
 
 
 def cadastra():
-
+    stop = 0
     print "Nos Informe alguns dados:"
     cpf = (raw_input('CPF: '))
+    if cpf == '':
+        stop = 1
     senha = (getpass.getpass())
+    if senha == '':
+        stop = 1
     nome = (raw_input('Nome: '))
+    if nome == '':
+        stop = 1
     idade = (raw_input('Idade: '))
+    if idade == '':
+        stop = 1
     email = (raw_input('Email: '))
+    if email == '':
+        stop = 1
     cidade = (raw_input('Cidade: '))
+    if cidade == '':
+        stop = 1
     age = (raw_input('Ano Escolar: '))
+    if age == '':
+        stop = 1
     escola = (raw_input('Escola de Origem: '))
+    print ''
 
-    novo = Aluno(cpf, senha, nome, idade, email, cidade, age, escola)
-    novo.set_niveis()
-    users.append(novo)
+    if stop == 0:
+        novo = Aluno(cpf, senha, nome, idade, email, cidade, age, escola)
+        users.append(novo)
+        return 0
+    else:
+        return 1
 
-    show_users()
+    
 
 def check_login(cpf, senha):
-    '''for i in range(len(users)):
+    for i in range(len(users)):
         if users[i].get_cpf() == cpf:
             if users[i].get_senha() == senha:
                 return 0
-    return 1'''
-    return 0
+    return 1
 
 def get_aluno(cpf):
     for i in range(len(users)):
