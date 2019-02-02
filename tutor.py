@@ -14,13 +14,16 @@ def recomenda_colaborativa(aluno):
 def feedback_nivel(nivel, valor, total):
 
     media = float(valor/total)
-
+    
+    print ''
+    print '================='
+    print ''
     if media < 0.3:
-        print 'Você teve bom desempenho no nível' + nivel + '.'
+        print 'Você teve bom desempenho no nível [ ' + str(nivel) + ' ].'
     elif media >= 0.3 and media < 0.5:
-        print 'Você teve desempenho regular no nível' + nivel + '.'
+        print 'Você teve desempenho regular no nível [ ' + str(nivel) + ' ].'
     else:
-        print 'Como um todo, o seu desempenho no nível' + nivel + 'não foi muito bom.'
+        print 'Como um todo, o seu desempenho no nível [ ' + str(nivel) + ' ] não foi muito bom.'
 
 
 def feedback(aluno, dis):

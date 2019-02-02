@@ -192,7 +192,7 @@ def get_questao(disciplina, linha, coluna):
     if disciplina == 1:
         return matematica[linha][coluna]
     elif disciplina == 2:
-        return huminades[linha][coluna]
+        return humanidades[linha][coluna]
     else: 
         return ciencias[linha][coluna]
 
